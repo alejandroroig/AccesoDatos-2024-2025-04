@@ -23,13 +23,12 @@ public class DynamoDBManager {
             String accessKeyId = properties.getProperty("aws_access_key_id");
             String secretAccessKey = properties.getProperty("aws_secret_access_key");
             String sessionToken = properties.getProperty("aws_session_token");
-            String region = properties.getProperty("aws_region");
 
             AwsCredentials awsCredentials = AwsSessionCredentials.create(accessKeyId, secretAccessKey, sessionToken);
 
             dynamoDbClient = DynamoDbClient.builder()
                     .credentialsProvider(StaticCredentialsProvider.create(awsCredentials))
-                    .region(Region.of(region))
+                    .region(Region.US_EAST_1)
                     .build();
 
             dynamoDbEnhancedClient = DynamoDbEnhancedClient.builder()

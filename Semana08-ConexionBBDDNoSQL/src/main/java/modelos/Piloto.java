@@ -14,7 +14,7 @@ import software.amazon.awssdk.enhanced.dynamodb.internal.converter.attribute.*;
 public class Piloto {
     private String nombre;
     private int numero;
-    private LocalDate fechaNacimiento;
+    private String fechaNacimiento;
     private String nacionalidad;
 
     @DynamoDbAttribute("name")
@@ -33,7 +33,7 @@ public class Piloto {
     }
 
     @DynamoDbAttribute("birthDate")
-    public LocalDate getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 }

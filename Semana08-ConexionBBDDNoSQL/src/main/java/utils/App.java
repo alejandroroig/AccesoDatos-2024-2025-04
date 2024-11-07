@@ -23,13 +23,13 @@ public class App {
         Piloto piloto1 = new Piloto();
         piloto1.setNombre("Isack Hadjar");
         piloto1.setNumero(98);
-        piloto1.setFechaNacimiento(LocalDate.of(2004, 9, 28));
+        piloto1.setFechaNacimiento(String.valueOf(LocalDate.of(2004, 9, 28)));
         piloto1.setNacionalidad("France");
 
         Piloto piloto2 = new Piloto();
         piloto2.setNombre("Pepe Martí");
         piloto2.setNumero(99);
-        piloto2.setFechaNacimiento(LocalDate.of(2005, 6, 13));
+        piloto2.setFechaNacimiento(String.valueOf(LocalDate.of(2005, 6, 13)));
         piloto2.setNacionalidad("Spain");
 
         Equipo equipo = new Equipo();

@@ -1,8 +1,8 @@
-package utils;
+package ejemplo.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import modelos.Equipo;
+import ejemplo.modelos.Equipo;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
@@ -14,11 +14,11 @@ import software.amazon.awssdk.services.dynamodb.waiters.DynamoDbWaiter;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OperacionesDynamoDB {
@@ -101,6 +101,18 @@ public class OperacionesDynamoDB {
             System.out.println("Equipo no encontrado");
         }
         return equipo;
+    }
+
+    public List<Equipo> obtenerTodosEquipos() {
+        DynamoDbTable<Equipo> tabla = dynamoDbEnhancedClient.table("EquiposF1", TableSchema.fromBean(Equipo.class));
+
+        // Crear una solicitud de escaneo para obtener todos los elementos
+        ScanEnhancedRequest scanRequest = ScanEnhancedRequest.builder().build();
+
+        // Escanear la tabla y convertir los resultados a una lista
+        List<Equipo> listaEquipos = new ArrayList<>();
+        tabla.scan(scanRequest).forEach(page -> listaEquipos.addAll(page.items()));
+        return listaEquipos;
     }
 
     public void actualizarEquipo(Equipo equipo) {

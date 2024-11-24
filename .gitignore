@@ -1,2 +1,5 @@
+*.properties
 db.properties
-db.properties
+rds.properties
+dynamo.properties
+dynamodb.properties

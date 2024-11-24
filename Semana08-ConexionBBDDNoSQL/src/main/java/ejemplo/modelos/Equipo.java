@@ -1,30 +1,23 @@
-package modelos;
+package ejemplo.modelos;
 
 import lombok.Data;
-
-import java.time.LocalDate;
+import java.util.List;
 
 import lombok.NoArgsConstructor;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.*;
-import software.amazon.awssdk.enhanced.dynamodb.internal.converter.attribute.*;
 
 @Data
 @NoArgsConstructor
 @DynamoDbBean
-public class Piloto {
+public class Equipo {
     private String nombre;
-    private int numero;
-    private String fechaNacimiento;
     private String nacionalidad;
+    private List<Piloto> pilotos;
 
+    @DynamoDbPartitionKey
     @DynamoDbAttribute("name")
     public String getNombre() {
         return nombre;
-    }
-
-    @DynamoDbAttribute("number")
-    public int getNumero() {
-        return numero;
     }
 
     @DynamoDbAttribute("nationality")
@@ -32,8 +25,8 @@ public class Piloto {
         return nacionalidad;
     }
 
-    @DynamoDbAttribute("birthDate")
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
+    @DynamoDbAttribute("drivers")
+    public List<Piloto> getPilotos() {
+        return pilotos;
     }
 }

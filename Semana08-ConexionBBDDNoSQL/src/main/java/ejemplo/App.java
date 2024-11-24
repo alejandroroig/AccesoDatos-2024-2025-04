@@ -1,10 +1,12 @@
-package utils;
+package ejemplo;
 
-import modelos.Equipo;
-import modelos.Piloto;
+import ejemplo.utils.OperacionesDynamoDB;
+import ejemplo.modelos.Equipo;
+import ejemplo.modelos.Piloto;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -32,6 +34,12 @@ public class App {
         piloto2.setFechaNacimiento(String.valueOf(LocalDate.of(2005, 6, 13)));
         piloto2.setNacionalidad("Spain");
 
+        Piloto piloto3 = new Piloto();
+        piloto3.setNombre("Alejandro Roig");
+        piloto3.setNumero(100);
+        piloto3.setFechaNacimiento(String.valueOf(LocalDate.of(2004, 9, 28)));
+        piloto3.setNacionalidad("Spain");
+
         Equipo equipo = new Equipo();
         equipo.setNombre("Campos Racing");
         equipo.setNacionalidad("Spain");
@@ -45,8 +53,9 @@ public class App {
         System.out.println("Equipo obtenido: " + equipoObtenido);
 
         // Actualizar equipo
-        equipo.setNacionalidad("Andorra");
-        operacionesDynamoDB.actualizarEquipo(equipo);
+        equipoObtenido.setNacionalidad("Andorra");
+        System.out.println("Equipo actualizado: " + equipoObtenido);
+        operacionesDynamoDB.actualizarEquipo(equipoObtenido);
 
         // Obtener el equipo
         equipoObtenido = operacionesDynamoDB.obtenerEquipo("Campos Racing");

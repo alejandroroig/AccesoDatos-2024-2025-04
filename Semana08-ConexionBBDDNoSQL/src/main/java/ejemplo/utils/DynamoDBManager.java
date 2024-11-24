@@ -1,4 +1,4 @@
-package utils;
+package ejemplo.utils;
 
 import software.amazon.awssdk.auth.credentials.AwsCredentials;
 import software.amazon.awssdk.auth.credentials.AwsSessionCredentials;
@@ -17,7 +17,7 @@ public class DynamoDBManager {
 
     public static void initializeClients() {
         Properties properties = new Properties();
-        try (InputStream input = DynamoDBManager.class.getClassLoader().getResourceAsStream("db.properties")) {
+        try (InputStream input = DynamoDBManager.class.getClassLoader().getResourceAsStream("dynamo.properties")) {
             properties.load(input);
 
             String accessKeyId = properties.getProperty("aws_access_key_id");
